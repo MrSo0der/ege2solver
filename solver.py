@@ -39,6 +39,7 @@ def delete_occurences(raw):
         done += k
     return done
 
+
 def string_analyzer(string):
     final = ''
     flag = -1
@@ -65,6 +66,7 @@ def string_analyzer(string):
             flag = -1
             final += ')'
     return final
+
 
 def main_algorithm(sentence, instances, str_amount):
     real_true = AlwaysTrue()
@@ -118,7 +120,6 @@ def main_algorithm(sentence, instances, str_amount):
     for columns in possible_column_sets:
         if compare(columns, input_columns):
             winner = columns
-
     if winner is None:
         return 'Введённые данные некорректны.'
 
@@ -136,5 +137,4 @@ def main_algorithm(sentence, instances, str_amount):
                     letters[j].append('z')
 
     answer = delete_occurences(letters)
-
     return answer
