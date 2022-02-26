@@ -23,18 +23,18 @@ def compare(first, second):
     return False
 
 
-def delete_occurences(raw):
+def delete_occurences(row):
     almost_done = [[] for _ in range(4)]
     done = []
     for _ in range(4):
         for i in range(4):
-            if len(raw[i]) == 1:
-                almost_done[i].append(raw[i][0])
+            if len(row[i]) == 1:
+                almost_done[i].append(row[i][0])
                 for j in range(4):
                     try:
-                        raw[j].remove(almost_done[i][0])
+                        row[j].remove(almost_done[i][0])
                     except ValueError:
-                        pass
+                        continue
     for k in almost_done:
         done += k
     return done
@@ -103,18 +103,18 @@ def main_algorithm(sentence, instances, str_amount):
                     full_instances[i][2] <= t_ones:
                 possible_instances[i].append(t_instance)
 
-    possible_raws = []
+    possible_rows = []
     for kill in map(sewer, product(*possible_instances)):
         if kill is not None:
-            possible_raws.append(kill)
+            possible_rows.append(kill)
 
     possible_column_sets = [
-        [[] for p in range(4)] for q in range(len(possible_raws))
+        [[] for _ in range(4)] for __ in range(len(possible_rows))
         ]
-    for i in range(len(possible_raws)):
+    for i in range(len(possible_rows)):
         for j in range(4):
             for k in range(len(full_instances)):
-                possible_column_sets[i][j].append(possible_raws[i][k][j])
+                possible_column_sets[i][j].append(possible_rows[i][k][j])
 
     winner = None
     for columns in possible_column_sets:
